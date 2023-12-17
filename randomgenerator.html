@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+.contain{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
+    width: 90vw;
+    max-width: 90%;
+    height: 50vh;
+    background-color: #5f0f40;
+    color: #e2e2e2;
+    display: flex;
+}
+button{
+    display: block;
+    margin:40px auto;
+    width: 60%;
+    height: 10vh;
+    background-color: #fb8b24;
+    color: #e2e2e2;
+    font-size: 1.5rem;
+    font-family: 'Muli', sans-serif;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+img{
+    border-radius: 50%;
+}
+    </style>
+</head>
+<body>
+
+    <div class="contain">loading....</div>
+    
+  
+   <button>click</button> 
+
+
+<script>
+
+const container =document.querySelector('.contain');
+const button = document.querySelector('button');
+const h1 = document.querySelector('h1');
+const h2 = document.querySelector('h2');
+const h3 = document.querySelector('h3');
+button.addEventListener("click",()=>{
+
+fetch( 'https://randomuser.me/api/',{
+    headers:{
+        'Accept': 'application/json'
+    }
+})
+.then(response => response.json())
+.then(data => container.innerHTML = `<img  src="${data.results[0].picture.large}" alt=""> 
+<h1>${data.results[0].name.first}</h1>  
+<h2>${data.results[0].name.last}</h2>
+<h3>${data.results[0].email}</h3>`)
+
+.catch(error => console.log('error', error)
+)
+
+
+
+
+})
+
+
+
+
+
+</script>
+
+
+
+
+
+</body>
+</html>
